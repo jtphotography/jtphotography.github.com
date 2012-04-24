@@ -5,7 +5,7 @@ body {
 	font-family:"Courier New", Courier, monospace;
 	font-size:18px;
 	width:90%;
-	overflow:hidden;
+	
 	
 }
 
@@ -51,13 +51,11 @@ body {
 	margin-left: 2em;
 	width: 1000px;
 	height: 550px;
-	margin-bottom: 6em;
 	font-family: "Courier New", Courier, monospace;
 	padding: 0px;
 }
 
-#innerContainer, .HomeContent {
-	
+#innerContainer, .HomeContent {	
 	position:relative;
 	max-width:100%;
 	font-family: "American Typewriter", Courier, monospace;

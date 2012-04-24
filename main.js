@@ -45,6 +45,9 @@ function hideOthers(me) {
 
 
 $(document).ready(function() {
+	
+	
+	
 	$(".subMenuItem").css("display","block");
 	$(".subMenu").hide(0);
 	$(".menuHead, .subMenuItem").hover(function() {		
