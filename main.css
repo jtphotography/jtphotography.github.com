@@ -13,6 +13,7 @@ body {
 		display:none;
 }
 
+
 #header {
 	font-size: 1.6em;
 	margin-left: 4em;
@@ -29,8 +30,9 @@ body {
 
 #stuff {
 	min-width:2200px;
-
 }
+
+
 
 #sideMenu {
 	font-size:16px;
