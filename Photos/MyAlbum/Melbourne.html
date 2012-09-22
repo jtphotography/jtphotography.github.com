@@ -1,0 +1,908 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">	
+	<!-- saved from url=(0014)about:internet -->
+<head>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		<title>Melbourne</title>
+				
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="title" content="Melbourne" />
+<meta name="keywords" content="Melbourne, Melbourne, jAlbum 10, Galleria" />
+<meta name="description" content="Melbourne" />
+<meta property="og:title" content="Melbourne" />
+<meta property="og:site_name" content="Jalbum" />
+<meta property="fb:app_id" content="140299612674733" />
+		<link href="res/galleria/galleria.css" rel="stylesheet" type="text/css" />
+		<link href="res/index.css" rel="stylesheet" type="text/css" />		
+		<link href="res/common.css" rel="stylesheet" type="text/css" />
+		<style type="text/css">
+	.thumbnails li {
+		width: 40px;
+		height: 40px;
+	}
+
+	#middle_container {
+		height: 510px;
+	}
+
+	#scroller_container {
+		margin-top: 5px;
+		margin-bottom: 10px;
+		width: 890px;	
+	}
+
+	#image_scroller {
+		margin: 0 10px 0 20px;
+		width: 700px;
+	}
+	
+	#thumbnails_container {
+		width: 3500px;
+	}
+	
+	#scroller_container,
+	#image_scroller,
+	#thumbnails_container {
+		height: 50px;
+	}
+	
+	#folders_container {
+		;
+	}		
+	
+	.folders {
+		width: 0px;
+	}
+	
+	.folders li {
+		width: 56px;
+		height: 56px;
+	}
+	
+	.caption,
+	.description {
+		width: 700px;
+	}
+</style>
+		<script src="res/jquery.js" type="text/javascript"></script>
+			<script src="res/jquery.hotkeys.js" type="text/javascript"></script>
+	<script src="res/galleria/jquery.galleria.js" type="text/javascript"></script>
+	<script src="res/jquery.scrollimages.js" type="text/javascript"></script>	
+	<script type="text/javascript"><!--//--><![CDATA[//><!--	
+		$(function() {
+			$("#thumbnails_container").imageScroller({
+				onBeforeScroll: function() { $.galleria.stop() },
+				onScroll: function() { $.galleria.start() }, 
+				duration: 120, 
+				imageWidth: 50, 
+				size: 14,
+				fastSteps: 14
+			});
+			
+			var formattedThumbnailOpacity = 67/100;
+			
+			$(".thumbnails_unstyled").addClass("thumbnails");
+			$("ul.thumbnails").galleria({
+				history: false,
+				clickNext: true,
+				insert: "#main_image",
+				onImage: function(image, caption, thumb) {
+					var extras = $("#extras").css("display", "none").empty();
+					image.css("display", "none").fadeIn(741);
+					caption.css("display", "none").fadeIn(741);
+					
+					if (false) {
+						var extrasList = $("<ul></ul>");
+						extrasList.addMetadata("Date", thumb.data("originalDate"));
+						extrasList.addMetadata("Camera", thumb.data("cameraModel"));
+						extrasList.addMetadata("Exposure time", thumb.data("exposureTime"));
+						extrasList.addMetadata("ISO", thumb.data("isoEquivalent"));
+						extrasList.addMetadata("Aperture", thumb.data("aperture"));
+						extrasList.addMetadata("Focus distance", thumb.data("focusDistance"));
+						extrasList.addMetadata("Focal length", thumb.data("focalLength35mm"));
+						extrasList.addMetadata("Keywords", thumb.data("keywords"));
+						if (extrasList.children().length > 0) {
+							extras.append(extrasList);						
+							extrasList.find(":first-child").addClass("first");
+							extras.css({ 
+								width : (image.outerWidth() - (5 * 2) + 100) + "px" 
+							}).fadeIn(741);
+						}
+					}
+					
+					var li = thumb.parents("li");
+					li.siblings().children("img.selected").fadeTo(500, formattedThumbnailOpacity);
+					thumb.fadeTo("fast", 1).addClass("selected");
+					image.attr("title", "Next image");
+					
+					var original = thumb.data("original");
+					if (original) {
+						var originalLink = $("<a></a>").attr("href", original).text("Download original");
+						caption.append(" (").append(originalLink).append(")");
+					}
+				},
+				onThumb: function(thumb) {
+					var li = thumb.parents("li");
+					var fadeTo = li.is(".active") ? "1" : formattedThumbnailOpacity;
+					thumb.css({display: "none", opacity: fadeTo}).fadeIn(1500);
+					thumb.hover(
+						function() { 
+							thumb.fadeTo("fast", 1);		
+						},
+						function() {
+							li.not(".active").children("img").fadeTo("fast", formattedThumbnailOpacity);
+						}
+					)
+				},
+				preloads: 3,
+				fastSteps: 14,
+				onPrev: function() {
+					$.imageScroller.scrollLeft();
+				},
+				onNext: function() {
+					$.imageScroller.scrollRight();
+				},
+				onPrevFast: function() {
+					$.imageScroller.fastScrollLeft();
+				},
+				onNextFast: function() {
+					$.imageScroller.fastScrollRight();
+				},
+				enableSlideshow : true,
+				autostartSlideshow : false,
+				slideshowDelay : 3000,
+				onSlideshowPlayed : function() {
+					$('.play').hide();
+					$('.pause').show();	
+				},
+				onSlideshowPaused : function() {
+					$('.play').show();
+					$('.pause').hide();
+				}
+			});
+			
+			$.galleria.loader = $("<div></div>").addClass("loader").append($(new Image()).attr("src","res/loader.gif").attr("title","Loading..."));
+			
+			prepareArrow = function(arrow) {
+				arrow.css({display: "none", opacity: 0.5, "padding-top": "0px"}).fadeIn( 1000);			
+				arrow.hover(
+					function() {
+						arrow.fadeTo("fast", 1);
+					},
+					function() {
+						arrow.fadeTo("fast", 0.5);			
+					}
+				);	
+			}
+			
+			var leftArrow = $("#left_arrow");
+			prepareArrow(leftArrow);
+			leftArrow.click(function() {
+				$.galleria.prev();	
+			});
+			
+			var rightArrow = $("#right_arrow");
+			prepareArrow(rightArrow);
+			rightArrow.click(function() {
+				$.galleria.next();
+			});
+			
+			if (true) {
+				var leftFastArrow = $("#left_fast_arrow");
+				prepareArrow(leftFastArrow);
+				leftFastArrow.click(function() {
+					$.galleria.prevFast();
+				});
+				
+				var rightFastArrow = $("#right_fast_arrow");
+				prepareArrow(rightFastArrow);
+				rightFastArrow.click(function() {
+					$.galleria.nextFast();
+				});
+			}
+		});
+
+		$(document).bind("keydown", "left", function() {
+			if (!KeyboardNavigation.widgetHasFocus()) {
+				$.galleria.prev();
+			}
+		});
+		$(document).bind("keydown", "right", function() {
+			if (!KeyboardNavigation.widgetHasFocus()) {
+				$.galleria.next();
+			}
+		});
+		$(document).bind("keydown", "space", function() {
+			if (!KeyboardNavigation.widgetHasFocus()) {
+				$.galleria.toggleSlideshow();
+			}
+		});
+
+		var KeyboardNavigation = {
+			widgetHasFocus: function() {
+				if(typeof _jaWidgetFocus != 'undefined' && _jaWidgetFocus) {
+					return true;
+				}
+				return false;
+			}
+		}
+	//--><!]]></script>
+
+	<link rel="alternate" href="album.rss" type="application/rss+xml"/>
+</head>
+	<body>
+		<div id="header">
+			<div id="top_container" class="border">
+					
+			</div>
+				
+		</div>
+<div id="main">
+	<div id="middle_container">
+		<div id="main_image"></div>
+		<div id="extras"></div>
+	</div>
+	
+		<div id="scroller_container">
+			<img class="hide" src="res/left-fast.png" id="left_fast_arrow" alt="Scroll left (fast)" title="Scroll left (fast)" />
+			<img class="hide" id="left_arrow" src="res/left.png" alt="Scroll left" title="Scroll left" />					
+			<div id="image_scroller">
+				<ul id="thumbnails_container" class="thumbnails_unstyled">
+						<li class="active">
+							
+							<a href="slides/Melbourne/Melbourne - 01.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 01.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 02.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 02.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 03.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 03.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:358</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 04.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 04.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 05.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 05.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 06.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 06.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 07.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 07.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:362</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 08.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 08.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 09.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 09.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:319;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 10.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 10.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 11.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 11.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 12.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 12.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:347</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 13.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 13.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 14.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 14.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:411</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 15.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 15.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:281</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 16.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 16.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 17.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 17.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 18.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 18.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:338;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 19.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 19.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:350</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 20.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 20.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:330</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 21.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 21.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 22.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 22.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:319;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 23.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 23.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:617;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 24.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 24.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:420</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 25.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 25.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 26.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 26.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 27.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 27.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:341</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 28.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 28.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 29.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 29.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 30.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 30.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 31.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 31.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:400</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 32.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 32.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 33.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 33.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:319;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 34.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 34.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:319;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 35.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 35.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:375;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 36.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 36.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 37.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 37.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 38.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 38.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 39.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 39.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:319;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 40.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 40.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 41.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 41.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 42.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 42.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 43.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 43.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 44.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 44.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:319;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 45.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 45.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 46.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 46.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 47.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 47.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:302</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 48.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 48.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:395</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 49.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 49.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 50.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 50.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 51.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 51.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:221</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 52.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 52.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 53.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 53.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:330</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 54.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 54.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:549;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 55.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 55.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:319;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 56.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 56.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:389</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 57.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 57.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:303</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 58.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 58.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:319;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 59.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 59.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:353;;height:480</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 60.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 60.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 61.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 61.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:345</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 62.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 62.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:400</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 63.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 63.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 64.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 64.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 65.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 65.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:341</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 66.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 66.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:385</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 67.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 67.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 68.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 68.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 69.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 69.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:425</span>
+						</li>
+						
+						<li class="">
+							
+							<a href="slides/Melbourne/Melbourne - 70.jpg" title="">
+								<img src="thumbs/Melbourne/Melbourne - 70.jpg" alt="" title="" style="width: 40px; height: 40px;" />
+							</a>
+							<span>width:640;;height:387</span>
+						</li>
+						
+				</ul>
+				<div class="clear"></div>
+			</div>					
+			<img class="hide" id="right_arrow" src="res/right.png" alt="Scroll right" title="Scroll right" />
+			<img class="hide" src="res/right-fast.png" id="right_fast_arrow" alt="Scroll right (fast)" title="Scroll right (fast)" />
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+			<div class="clear"></div>	
+</div>
+<div class="clear"></div>
+		
+<SCRIPT TYPE="text/javascript"> 
+<!-- 
+//Disable right click script 
+var message="Sorry, right-click has been disabled"; 
+function clickIE() {if (document.all) {(message);return false;}} 
+function clickNS(e) {if 
+(document.layers||(document.getElementById&&!document.all)) { 
+if (e.which==2||e.which==3) {(message);return false;}}} 
+if (document.layers) 
+{document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS;} 
+else{document.onmouseup=clickNS;document.oncontextmenu=clickIE;} 
+document.oncontextmenu=new Function("return false") 
+});
+// --> 
+</SCRIPT> </body>
+</html>
+

@@ -78,6 +78,9 @@ $(document).ready(function() {
 				case "Australia": 
 					submenuHeadClick(this);
 					break;
+				case "Australia2012": 
+					submenuHeadClick(this);
+					break;
 				case "Bahamas": 
 					submenuHeadClick(this);
 					break;
@@ -176,6 +179,62 @@ $(document).ready(function() {
 			$(".AustraliaWildlifeContent").show(1000);
 			selectedContent = "AustraliaWildlife";
 			break;
+			case "AyersRock": 			
+				submenuItemClick(this);
+				hideOthers(this);
+				$("#AyersRockFrame").attr('src',"Photos/MyAlbum/AyersRock.html");
+				$(".AyersRockContent").show(1000);
+				selectedContent = "AyersRock";
+				break;
+			case "BlueMountains": 			
+				submenuItemClick(this);
+				hideOthers(this);
+				$("#BlueMountainsFrame").attr('src',"Photos/MyAlbum/BlueMountains.html");
+				$(".BlueMountainsContent").show(1000);
+				selectedContent = "BlueMountains";
+				break;
+			case "Cairns": 			
+				submenuItemClick(this);
+				hideOthers(this);
+				$("#CairnsFrame").attr('src',"Photos/MyAlbum/Cairns.html");
+				$(".CairnsContent").show(1000);
+				selectedContent = "Cairns";
+				break;
+			case "HamiltonIsland": 			
+				submenuItemClick(this);
+				hideOthers(this);
+				$("#HamiltonIslandFrame").attr('src',"Photos/MyAlbum/HamiltonIsland.html");
+				$(".HamiltonIslandContent").show(1000);
+				selectedContent = "HamiltonIsland";
+				break;
+			case "Melbourne": 			
+				submenuItemClick(this);
+				hideOthers(this);
+				$("#MelbourneFrame").attr('src',"Photos/MyAlbum/Melbourne.html");
+				$(".MelbourneContent").show(1000);
+				selectedContent = "Melbourne";
+				break;
+			case "MikeBall": 			
+				submenuItemClick(this);
+				hideOthers(this);
+				$("#MikeBallFrame").attr('src',"Photos/MyAlbum/MikeBall.html");
+				$(".MikeBallContent").show(1000);
+				selectedContent = "MikeBall";
+				break;
+			case "PortDouglas": 			
+				submenuItemClick(this);
+				hideOthers(this);
+				$("#PortDouglasFrame").attr('src',"Photos/MyAlbum/PortDouglas.html");
+				$(".PortDouglasContent").show(1000);
+				selectedContent = "PortDouglas";
+				break;
+			case "Sydney": 			
+				submenuItemClick(this);
+				hideOthers(this);
+				$("#SydneyFrame").attr('src',"Photos/MyAlbum/Sydney.html");
+				$(".SydneyContent").show(1000);
+				selectedContent = "Sydney";
+				break;
 			case "BahamasUnderwater": 
 				submenuItemClick(this);
 				hideOthers(this);
